@@ -65,13 +65,6 @@ def getPredictions(summaries, testSet):
 def getAccuracy(testSet, predictions):
     correct = 0
     for i in range(len(testSet)):
-        result = predict(summaires, testSet[i])
-        predictions.append(result)
-    return predictions
-
-def getAccuracy(testSet, predictions):
-    correct = 0
-    for i in range(len(testSet)):
         if testSet[i][-1] == predictions[i]:
             correct += 1
     return (correct/(len(testSet))) * 100.0
