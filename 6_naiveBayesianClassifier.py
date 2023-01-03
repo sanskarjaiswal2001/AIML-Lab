@@ -30,7 +30,7 @@ def summarizeByClass(dataset):
     for i in range(len(dataset)):
         vector = dataset[i]
         if (vector[-1] not in separated):
-            separated[vector[-1]].append(vector)
+            separated[vector[-1]] = []
         separated[vector[-1]].append(vector)
     summaries = {}
     for classValue, instances in separated.items():
@@ -44,9 +44,10 @@ def calculateProbability(x, mean, stdev):
 def predict(summaries, inputVector):
     probabilities = {}
     for classValue, classSummaries in summaries.items():
-        mean, stdev = classSummaries[i]
-        x = inputVector[i]
-        probabilities[classValue] *= calculateProbability(x,mean,stdev)
+        for i in (len(classSummaries)):
+            mean, stdev = classSummaries[i]
+            x = inputVector[i]
+            probabilities[classValue] *= calculateProbability(x,mean,stdev)
     bestLabel, bestPorb = None, -1
     for classValue, probability in probabilities.tems():
         if bestLabel is None or probability > bestProb:
